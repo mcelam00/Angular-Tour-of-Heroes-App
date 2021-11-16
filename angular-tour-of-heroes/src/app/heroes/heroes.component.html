@@ -1,0 +1,9 @@
+<!--<h2>{{hero}}</h2> Lo que hace es mostrar el atributo que hemos añadido a la clase-->
+<!--Como cambiamos el atributo de la clase por un objeto de la interfaz, vamos a mostrar los atributos del objeto-->
+<h2>{{hero.name | uppercase}} Details</h2> <!-- "| uppercase" formatea el binding a mayúsculas, porque basicamente el nombre lo empipamos hacia uppercase activando la UppercasePipe -->
+    <div><span>id: </span>{{hero.id}}</div>
+    <div> <!--Como a parte de mostrarse el atributo nombre tiene que poderse modificar, lo mostraremos en un input y estableceremos un binding de dos vías, si el de una {{hero.name}} solo muestra [(ngModel)]="hero.name" muestra y cambia-->
+        <label for="name">Hero name: </label>
+        <input id="name" [(ngModel)]="hero.name" placeholder="name">
+        <!--Ahora deja de funcionar la app porque ngModel no viene por defecto sino que pertenece al opcional FormsModule-->
+    </div>
