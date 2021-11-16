@@ -14,23 +14,14 @@
 <h2>My Heroes</h2>
 <ul class="heroes">
   <!--Itero sobre los héroes y a cada uno le asigno un list item-->
-  <li *ngFor="let hero of heroesConstantes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero"> <!--Ponemos un evento para el click, de forma que se llame al método onSelect y se le pase como parámetro el objeto heroe correspondiente al list item que se ha picado-->
+  <li *ngFor="let hero of heroesConstantes" (click)="onSelect(hero)" [class.selected]="hero === heroeSeleccionado"> <!--Ponemos un evento para el click, de forma que se llame al método onSelect y se le pase como parámetro el objeto heroe correspondiente al list item que se ha picado-->
       <span class="badge">{{hero.id}}{{hero.name}}</span>
     
   </li>
 </ul>
 <!--Para aplicar una clase del css a un elemento html cuando se valide una condiccion existe un binding que nos permite indicarla. Así cuando el héroe de la iteracion actual sea el mismo que el de la variable (i.e. se haya picado sobre él) entonces aplicará al elemento el estilo de la clase selected en vez del de li solo por defecto-->
 
+<!--ponemos el selector de la componente hija y un bind que le pasa al atributo hero de la componente hija el valor que en esta clase tiene el heroe seleccionado-->
+<app-hero-detail [hero]="heroeSeleccionado"></app-hero-detail>
 
-
-<!--Para poder mostrar los detalles del héroe sobre el que picamos en la lista de arriba, necesitamos que haya una zona en el html que se oculte o se muestre con los datos actualizados del heroe que vamos picando-->
-<!--Debemos no obstante ocultar todo el bloque lo que seria un vif porqued ee lo contrario dará fallo al ser heroeseleccionado un atributo opcional que hasta que no se seleccione uno estará como unsigned. Así hacer heroeseleccionado.name sería tratar de leer la propiedad nombre de un unsigned y no puede ser-->
-<!--Lo envolvemos todo en un div y condicionamos el renderizado a que tenga valor la varible-->
-<div *ngIf="heroeSeleccionado">
-<h2>{{heroeSeleccionado.name | uppercase}} Details</h2>
-<div><span>id: </span>{{heroeSeleccionado.id}}</div>
-<div>
-  <label for="hero-name">Hero name: </label>
-  <input id="hero-name" [(ngModel)]="heroeSeleccionado.name" placeholder="name">
-</div>
-</div>
+<!--Now when the user clicks a hero in the list, the selectedHero changes. When the selectedHero changes, the property binding updates hero and the HeroDetailComponent displays the new hero.-->

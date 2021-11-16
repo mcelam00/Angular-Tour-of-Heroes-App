@@ -1,0 +1,16 @@
+<!--Con el objeto de que el código sea mas mantenible, vamos a separar de la componente heroes, la parte de mostrar la lista 
+de la parte de mostrar los detalles particulares cuando picamos un elemento de la lista-->
+
+
+
+<!--Para poder mostrar los detalles del héroe sobre el que picamos en la lista de arriba, necesitamos que haya una zona en el html que se oculte o se muestre con los datos actualizados del heroe que vamos picando-->
+<!--Debemos no obstante ocultar todo el bloque lo que seria un vif porqued ee lo contrario dará fallo al ser heroeseleccionado un atributo opcional que hasta que no se seleccione uno estará como unsigned. Así hacer heroeseleccionado.name sería tratar de leer la propiedad nombre de un unsigned y no puede ser-->
+<!--Lo envolvemos todo en un div y condicionamos el renderizado a que tenga valor la varible-->
+<div *ngIf="hero">
+    <h2>{{hero.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{hero.id}}</div>
+    <div>
+      <label for="hero-name">Hero name: </label>
+      <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
+    </div>
+    </div>
